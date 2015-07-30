@@ -42,36 +42,30 @@
     }];
 }
 
-
 - (void)testRetriveData
 {
+//    Given
+    NSDictionary *parameters = @{@"parameters":@"{\"api_key\":\"7d44326a4d8144112daae2ba8138409a87d6dd10\",\"query\":{\"perpage\":50}}"};
     NSString *path = @"search_sale";
-    
-    NSMutableDictionary * parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:API_KEY forKey:@"api_key"];
-    [parameters setObject:@{@"perpage":@50} forKey:@"query"];
-    NSString *parametersJSON = [NSString convertToJson:parameters];
-    
-    [parameters removeAllObjects];
-    [parameters setObject:parametersJSON forKey:@"parameters"];
-    
-    __block NSInteger statusCode;
 
-    void (^onSuccess)(NSArray *responsedData) = ^(NSArray *responsedData) {
-        statusCode = 200;
-        CFRunLoopRef runloopref = CFRunLoopGetCurrent();
-        CFRunLoopStop(runloopref);
-    };
-    
-    void (^onFailure)(NSError *error) = ^(NSError *error) {
-        statusCode = 400;
-        CFRunLoopRef runloopref = CFRunLoopGetCurrent();
-        CFRunLoopStop(runloopref);
-    };
-    
-    [_service getPath:path parameters:parameters success:onSuccess failure:onFailure];
-    CFRunLoopRun();
-    XCTAssertTrue(statusCode == 200, @"passed !");
+//    When
+    XCTestExpectation *exception = [self expectationWithDescription:@"testRetriveData"];
+    [_service getPath:path
+           parameters:parameters
+              success:^(NSArray *responsedData) {
+                  [exception fulfill];
+              }
+              failure:^(NSError *error) {
+              }];
+//    Then
+    [self waitForExpectationsWithTimeout:15.0 handler:^(NSError *error){
+        if (error) {
+            XCTFail(@"timeout");
+        } else {
+            NSLog(@"%s success", __func__);
+            XCTAssertTrue(@"pass");
+        }
+    }];
 }
 
 

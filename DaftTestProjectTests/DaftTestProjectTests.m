@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import "NSString+tools.h"
 
 @interface DaftTestProjectTests : XCTestCase
 
@@ -35,6 +36,17 @@
     [self measureBlock:^{
         // Put the code you want to measure the time of here.
     }];
+}
+
+-(void)testConvertToJsonMethod {
+    //    Given
+    NSDictionary *parameters = @{@"parameters":@"{\"api_key\":\"7d44326a4d8144112daae2ba8138409a87d6dd10\",\"query\":{\"perpage\":50}}"};
+    
+    //    When
+    NSString *jsonString = [NSString convertToJson:parameters];
+    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableLeaves error:nil];
+       //    Then
+    XCTAssertTrue([dictionary isEqualToDictionary:parameters], @"check passed");
 }
 
 @end

@@ -564,6 +564,7 @@
 				INFOPLIST_FILE = DaftTestProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 			};
 			name = Debug;
 		};
@@ -574,6 +575,7 @@
 				INFOPLIST_FILE = DaftTestProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 			};
 			name = Release;
 		};
@@ -630,6 +632,7 @@
 				501BA07F1B69061E00F14C84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		501BA0801B69061E00F14C84 /* Build configuration list for PBXNativeTarget "DaftTestProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -638,6 +641,7 @@
 				501BA0821B69061E00F14C84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
